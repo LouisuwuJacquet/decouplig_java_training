@@ -1,5 +1,6 @@
 package fr.lernejo.guessgame;
 import fr.lernejo.logger.*;
+import java.util.concurrent.TimeUnit;
 
 public class Simulation {
 
@@ -37,11 +38,26 @@ public class Simulation {
         }
     }
 
-    public void loopUntilPlayerSucceed() {
+    public void loopUntilPlayerSucceed(long max) {
         boolean end = this.nextRound();
-        while(!end) {
+        long limite = 0;
+        long init = System.currentTimeMillis();
+        while(!end && limite<max) {
             end=this.nextRound();
+            limite++;
         }
+        long timing = System.currentTimeMillis() - init;
+        String time = String.format("%02d:%02d.%02d",
+            TimeUnit.MILLISECONDS.toMinutes(timing),
+            TimeUnit.MILLISECONDS.toSeconds(timing),
+            TimeUnit.MILLISECONDS.toMillis(timing));
+        if(end){
+            System.out.println("You have won: "+numberToGuess+" was the solution. \n");
+        }
+        else{
+            System.out.println("Even with "+limite+" attempts, you have lost! What a looser. The solution was : "+numberToGuess+".\n");
+        }
+        System.out.println("Time taken : " + time);
     }
 }
 
