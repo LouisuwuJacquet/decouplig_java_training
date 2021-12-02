@@ -39,25 +39,23 @@ public class Simulation {
     }
 
     public void loopUntilPlayerSucceed(long max) {
-        boolean end = this.nextRound();
-        long limite = 0;
-        long init = System.currentTimeMillis();
-        while(!end && limite<max) {
-            end=this.nextRound();
-            limite++;
+        boolean fin = false;
+        long begin = System.currentTimeMillis();
+        for(int i = 0; i<=max;i++)
+        {
+            fin = nextRound();
+            if(fin)
+                break;
         }
-        long timing = System.currentTimeMillis() - init;
-        String time = String.format("%02d:%02d.%02d",
-            TimeUnit.MILLISECONDS.toMinutes(timing),
-            TimeUnit.MILLISECONDS.toSeconds(timing),
-            TimeUnit.MILLISECONDS.toMillis(timing));
-        if(end){
-            System.out.println("You have won: "+numberToGuess+" was the solution. \n");
-        }
-        else{
-            System.out.println("Even with "+limite+" attempts, you have lost! What a looser. The solution was : "+numberToGuess+".\n");
-        }
-        System.out.println("Time taken : " + time);
+        long time = System.currentTimeMillis() - begin;
+        String format = String.format("%02d:%02d.%02d",
+            TimeUnit.MILLISECONDS.toMinutes(time),
+            TimeUnit.MILLISECONDS.toSeconds(time),
+            TimeUnit.MILLISECONDS.toMillis(time));
+        if(!fin)
+            logger.log("The player has lost");
+        logger.log("Time taken : "+format);
+
     }
 }
 

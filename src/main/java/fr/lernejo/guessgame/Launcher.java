@@ -6,7 +6,7 @@ public class Launcher {
     private static final Logger logger = LoggerFactory.getLogger("launcher");
     public static void main(String[] args) {
         if(args.length==0){
-            System.out.println("Haha, tu n'a pas de args");
+            logger.log("Haha, tu n'a pas de args");
         }
         else if (args[0].equals("-interactive")) {
             Player player = new HumanPlayer();
@@ -15,6 +15,9 @@ public class Launcher {
             long randomNumber = random.nextInt(100);
             simulation.initialize(randomNumber);
             simulation.loopUntilPlayerSucceed(Long.MAX_VALUE);
+        }
+        else if(args.length==1){
+            System.out.println("Haha, tu n'a que 1 args");
         }
         else if (args[0].equals("-auto") && args[1].matches("[-+]?\\d*\\.?\\d+")) {
             Player player = new ComputerPlayer();

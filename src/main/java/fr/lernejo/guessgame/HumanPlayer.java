@@ -8,18 +8,19 @@ public class HumanPlayer implements Player {
     @Override
     public long askNextGuess() {
         Scanner myLong = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Enter a long: ");
-        return myLong.nextLong();
+        long nbr = myLong.nextLong();
+        logger.log("" + nbr);
+        return nbr;
     }
 
     @Override
     public void respond(boolean lowerOrGreater) {
         //cd n'est pas une question de savoir si il est dans l'interval, mais si il est trop petit(cas1) ou trop grand(cas2)
         if(lowerOrGreater){
-            System.out.println("Please, choose a greater number");
+            logger.log("Please, choose a greater number");
         }
         else{
-            System.out.println("Please, choose a lesser number");
+            logger.log("Please, choose a lesser number");
         }
 
     }
