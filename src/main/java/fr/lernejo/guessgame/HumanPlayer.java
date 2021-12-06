@@ -5,12 +5,19 @@ import java.util.Scanner;
 public class HumanPlayer implements Player {
     private final Logger logger = LoggerFactory.getLogger("player");
 
-    @Override
+    /*@Override
     public long askNextGuess() {
         Scanner myLong = new Scanner(System.in);  // Create a Scanner object
         long nbr = myLong.nextLong();
         logger.log("" + nbr);
         return nbr;
+    }*/
+    private final Scanner scanner = new Scanner(System.in);
+
+    @Override
+    public long askNextGuess() {
+        System.out.print("Entrez un nombre: ");
+        return scanner.nextLong();
     }
 
     @Override

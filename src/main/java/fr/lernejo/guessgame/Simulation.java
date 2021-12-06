@@ -23,17 +23,11 @@ public class Simulation {
 
         long number = player.askNextGuess();
         if (number == numberToGuess){
+            logger.log("End");
             return true;
         }
         else {
-            if (number < numberToGuess) {
-                player.respond(true);
-                logger.log("The number must be greater");
-            }
-            else {
-                player.respond(false);
-                logger.log("The number must be lower");
-            }
+            player.respond(number < numberToGuess);
             return false;
         }
     }
