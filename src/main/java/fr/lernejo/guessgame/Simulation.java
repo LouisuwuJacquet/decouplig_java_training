@@ -23,7 +23,7 @@ public class Simulation {
 
         long number = player.askNextGuess();
         if (number == numberToGuess){
-            logger.log("End");
+            logger.log("end");
             return true;
         }
         else {
